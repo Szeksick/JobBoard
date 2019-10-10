@@ -2,11 +2,14 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="main::head">
     <title>Job board</title>
 </head>
 <body>
+<nav th:replace="main::nav"></nav>
+<div th:replace="main::banner"></div>
 <h1>Job board test</h1>
+
+<footer th:replace="main::footer"></footer>
 </body>
 </html>
