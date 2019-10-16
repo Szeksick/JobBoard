@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="main::head">
     <title>Job board</title>
@@ -8,7 +8,18 @@
 <body>
 <nav th:replace="main::nav"></nav>
 <div th:replace="main::banner"></div>
-<h1>Job board test</h1>
+
+<ul>
+    <li th:each="jobOffer : ${jobOffers}">
+        <ol>
+            <li th:text="${jobOffer.name}"></li>
+            <li th:text="${jobOffer.category?.name}"></li>
+            <li th:text="${jobOffer.city}"></li>
+            <li th:text="${jobOffer.content}"></li>
+            <li th:text="${jobOffer.salary}"></li>
+        </ol>
+    </li>
+</ul>
 
 <footer th:replace="main::footer"></footer>
 </body>

@@ -16,8 +16,12 @@ import javax.validation.Valid;
 @Controller
 public class HomeController{
 
+    @Autowired
+    private JobOfferRepository jobOfferRepository;
+
     @RequestMapping("/")
-    public String home(){
+    public String home(Model model){
+        model.addAttribute("jobOffers", jobOfferRepository.findAll());
         return "index";
     }
 

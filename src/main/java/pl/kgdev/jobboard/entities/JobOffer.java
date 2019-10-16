@@ -8,23 +8,28 @@ public class JobOffer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-//    @ManyToOne
-    private Long id_category;
-//    @ManyToOne
-    private Long id_city;
+    @ManyToOne
+    private Category category;
+    @ManyToOne
+    private City city;
     private String content;
     private String company_name;
-//    @ManyToOne
-    private Long id_user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
     private double Salary;
 
-    public JobOffer(String name, Long id_category, Long id_city, String content, String company_name, Long id_user, double salary) {
+    public JobOffer() {
+    }
+
+    public JobOffer(String name, Category category, City city, String content, String company_name, User user, double salary) {
         this.name = name;
-        this.id_category = id_category;
-        this.id_city = id_city;
+        this.category = category;
+        this.city = city;
         this.content = content;
         this.company_name = company_name;
-        this.id_user = id_user;
+        this.user = user;
         Salary = salary;
     }
 
@@ -44,20 +49,20 @@ public class JobOffer {
         this.name = name;
     }
 
-    public Long getId_category() {
-        return id_category;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setId_category(Long id_category) {
-        this.id_category = id_category;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Long getId_city() {
-        return id_city;
+    public City getCity() {
+        return city;
     }
 
-    public void setId_city(Long id_city) {
-        this.id_city = id_city;
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public String getContent() {
@@ -76,12 +81,12 @@ public class JobOffer {
         this.company_name = company_name;
     }
 
-    public Long getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(Long id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public double getSalary() {
@@ -97,9 +102,12 @@ public class JobOffer {
         return "JobOffer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", id_category=" + id_category +
-                ", id_city=" + id_city +
+                ", category=" + category +
+                ", city=" + city +
                 ", content='" + content + '\'' +
+                ", company_name='" + company_name + '\'' +
+                ", user=" + user +
+                ", Salary=" + Salary +
                 '}';
     }
 }

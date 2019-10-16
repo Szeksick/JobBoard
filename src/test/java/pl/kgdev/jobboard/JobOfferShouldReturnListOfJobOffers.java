@@ -4,7 +4,10 @@ package pl.kgdev.jobboard;
 
 import org.junit.Test;
 import org.mockito.Mockito;
+import pl.kgdev.jobboard.entities.Category;
+import pl.kgdev.jobboard.entities.City;
 import pl.kgdev.jobboard.entities.JobOffer;
+import pl.kgdev.jobboard.entities.User;
 import pl.kgdev.jobboard.repositories.JobOfferRepository;
 import pl.kgdev.jobboard.services.JobOfferService;
 
@@ -22,7 +25,7 @@ public class JobOfferShouldReturnListOfJobOffers {
 
     @Test
     public void getAllJobOffers(){
-        JobOffer jobOffer = new JobOffer("Junior Java",1L,1L,"Treść ogłoszenia na junior Java developera","FakeCompany",1L,3000);
+        JobOffer jobOffer = new JobOffer("Junior Java",new Category("Praca w kopalni"),new City("New York"),"Treść ogłoszenia na junior Java developera","FakeCompany",new User("asd","asd","asd","asd","asd","asd"),3000);
 
         when(jobOfferRepository.save(any(JobOffer.class))).then(returnsElementsOf(new ArrayList<JobOffer>(Arrays.asList(jobOffer))));
 
@@ -33,8 +36,8 @@ public class JobOfferShouldReturnListOfJobOffers {
         JobOffer firstJobOffer = jobOfferService.findAll().get(0);
 
         assertEquals(jobOffer.getId(), firstJobOffer.getId());
-        assertEquals(jobOffer.getId_category(), firstJobOffer.getId_category());
-        assertEquals(jobOffer.getId_city(), firstJobOffer.getId_city());
+        assertEquals(jobOffer.getCategory(), firstJobOffer.getCategory());
+        assertEquals(jobOffer.getCity(), firstJobOffer.getCity());
         assertEquals(jobOffer.getContent(), firstJobOffer.getContent());
         assertEquals(jobOffer.getName(), firstJobOffer.getName());
 
