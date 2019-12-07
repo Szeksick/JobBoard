@@ -10,6 +10,6 @@ public class JobboardApplication {
         SpringApplication.run(JobboardApplication.class, args);
     }
 
-
+//komentarz pokazujący Michałowi działanie mergowania branchy
 
 }
