@@ -10,4 +10,6 @@ public class JobboardApplication {
         SpringApplication.run(JobboardApplication.class, args);
     }
 
+
+
 }

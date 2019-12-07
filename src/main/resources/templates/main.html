@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head thfragment="head">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <meta name="author" content="Konrad Gugała">
+    <meta name="description" content="Szukasz pracy? Znajdziesz ją tu na ">
+    <meta name="keywords" content="praca, szukam, dorywcza, sprzedaż, sprzedaz, lista, ogłoszenia, pracodawcy">
+    <link type="text/css" rel="stylesheet" th:href="@{/style.css}">
+    <script th:src="@{/bannerbackground.js}"></script>
+    <title>Title</title>
+</head>
+<body>
+<nav th:fragment="nav">
+    <ul>
+        <li><a href="/" title="">Start</a></li>
+        <li><a href="/addjoboffer" title="">Dla pracodawców</a></li>
+        <li><a href="/categories" title="">Kategorie</a></li>
+        <li><a href="" title="">Grupa FB</a></li>
+    </ul>
+</nav>
+<div class="banner" th:fragment="banner">
+    <canvas id="banner-background"></canvas>
+    <h1>Szukasz pracy? Znajdziesz ją tu</h1>
+</div>
+<div class="searchengine" th:fragment="search">
+    <form action="#" method="GET" th:action="@{/search}">
+        <label for="keyword"></label>
+        <input id="keyword" type="text">
+        <input type="submit" value="Szukaj">
+    </form>
+</div>
+<footer th:fragment="footer">
+    <h6>All rigths reserved SzukamPracy.</h6>
+</footer>
+</body>
+</html>

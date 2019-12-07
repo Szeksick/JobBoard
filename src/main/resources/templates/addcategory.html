@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head th:replace="main::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="main::nav"></nav>
+<div class="banner">
+    <canvas id="banner-background"></canvas>
+    <h1>Dodaj kategorię ofert pracy</h1>
+</div>
+<div class="form-wrapper">
+    <form action="#" method="post" th:action="@{/admin/processaddcategory}" th:object="${category}">
+        <label for="categoryname">Nazwa kategori</label>
+        <input id="categoryname" type="text" th:field="*{name}">
+        <input type="submit" value="Dodaj miasto">
+    </form>
+</div>
+</body>
+</html>

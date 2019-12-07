@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head th:replace="main::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="main::nav"></nav>
+<div class="banner">
+<canvas id="banner-background"></canvas>
+<h1>Dodaj ofertę pracy</h1>
+</div>
+<div class="form-wrapper">
+    <form id="addjobofferform" action="#" method="post"  th:action="@{/processjoboffer}" th:object="${jobOffer}" >
+        <label for="jobname">Nazwa stanowiska:</label>
+        <input id="jobname" type="text" th:field="*{name}">
+        <label for="category">Kategoria:</label>
+        <select id="category" form="addjobofferform" th:field="*{category}">
+            <option th:each="category : ${categories}" th:value="${category}" th:text="${category.name}"></option>
+        </select>
+        <label for="city"></label>
+        <select id="city" th:field="*{city}" form="addjobofferform">
+            <option th:each="city : ${cities}" th:value="${city}" th:text="${city.name}"></option>
+        </select>
+        <label for="content">Treść ogłoszenia</label>
+        <textarea id="content" form="addjobofferform" th:field="*{content}"></textarea>
+        <label for="salary"></label>
+        <input type="text" id="salary" th:field="*{salary}">
+        <input type="submit" value="Dodaj ofertę">
+    </form>
+</div>
+</body>
+</html>

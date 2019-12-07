@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="main::head">
+    <title>Job board</title>
+</head>
+<body>
+<nav th:fragment="nav">
+    <ul>
+        <li><a href="/" title="">Start</a></li>
+        <li><a href="/addjoboffer" title="">Dla pracodawców</a></li>
+        <li><a href="/categories" title="">Kategorie</a></li>
+        <li><a href="" title="">Grupa FB</a></li>
+        <li><a href="/admin/addcategory" title="">Dodaj kategorię</a></li>
+        <li><a href="/admin/addcity" title="">Dodaj miasto</a></li>
+
+    </ul>
+</nav>
+<h2>Lista ofert pracy</h2>
+<ul>
+    <li th:each="jobOffer : ${jobOffers}">
+        <ol>
+            <li th:text="${jobOffer.name}"></li>
+            <li th:text="${jobOffer.category?.name}"></li>
+            <li th:text="${jobOffer.city}"></li>
+            <li th:text="${jobOffer.content}"></li>
+            <li th:text="${jobOffer.salary}"></li>
+        </ol>
+    </li>
+</ul>
+
+<footer th:replace="main::footer"></footer>
+</body>
+</html>
