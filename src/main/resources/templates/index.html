@@ -14,7 +14,7 @@
         <ol>
             <li th:text="${jobOffer.name}"></li>
             <li th:text="${jobOffer.category?.name}"></li>
-            <li th:text="${jobOffer.city}"></li>
+            <li th:text="${jobOffer.city?.name}"></li>
             <li th:text="${jobOffer.content}"></li>
             <li th:text="${jobOffer.salary}"></li>
         </ol>
