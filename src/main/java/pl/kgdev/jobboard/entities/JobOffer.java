@@ -9,8 +9,10 @@ public class JobOffer {
     private Long id;
     private String name;
     @ManyToOne
+    @JoinColumn(name="category_id", nullable=false)
     private Category category;
     @ManyToOne
+    @JoinColumn(name="city_id", nullable=false)
     private City city;
     private String content;
     private String company_name;
