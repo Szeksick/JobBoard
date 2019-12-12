@@ -8,10 +8,8 @@ public class JobOfferResponse {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
     private Long jobOfferId;
 
-    @ManyToOne
     private Long userId;
 
 }
