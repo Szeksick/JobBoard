@@ -17,12 +17,12 @@
         <label for="jobname">Nazwa stanowiska:</label>
         <input id="jobname" type="text" th:field="*{name}">
         <label for="category">Kategoria:</label>
-        <select id="category" form="addjobofferform" th:field="*{category}">
-            <option th:each="category : ${categories}" th:value="${category}" th:text="${category.name}"></option>
+        <select id="category" th:field="*{category}">
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
         </select>
         <label for="city"></label>
-        <select id="city" th:field="*{city}" form="addjobofferform">
-            <option th:each="city : ${cities}" th:value="${city}" th:text="${city.name}"></option>
+        <select id="city" th:field="*{city}" >
+            <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
         </select>
         <label for="content">Treść ogłoszenia</label>
         <textarea id="content" form="addjobofferform" th:field="*{content}"></textarea>

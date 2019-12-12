@@ -9,7 +9,4 @@ public class JobboardApplication {
     public static void main(String[] args) {
         SpringApplication.run(JobboardApplication.class, args);
     }
-
-//komentarz pokazujący Michałowi działanie mergowania branchy
-
 }

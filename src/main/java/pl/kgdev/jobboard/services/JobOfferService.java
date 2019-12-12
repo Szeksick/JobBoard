@@ -1,11 +1,9 @@
 package pl.kgdev.jobboard.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.kgdev.jobboard.entities.JobOffer;
 import pl.kgdev.jobboard.repositories.JobOfferRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
