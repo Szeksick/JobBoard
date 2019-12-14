@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="main::head">
+    <title>Job board</title>
+</head>
+<body>
+<nav th:replace="main::nav"></nav>
+<div th:replace="main::banner"></div>
+
+<ul>
+    <li th:each="category : ${categories}">
+        <ol>
+            <li th:text="${category.name}"></li>
+        </ol>
+    </li>
+</ul>
+
+<footer th:replace="main::footer"></footer>
+</body>
+</html>
