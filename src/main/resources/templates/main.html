@@ -9,29 +9,30 @@
     <meta name="keywords" content="praca, szukam, dorywcza, sprzedaż, sprzedaz, lista, ogłoszenia, pracodawcy">
     <link type="text/css" rel="stylesheet" th:href="@{/style.css}">
     <script th:src="@{/bannerbackground.js}"></script>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
     <title>Title</title>
 </head>
 <body>
-<nav th:fragment="nav">
-    <ul>
-        <li><a href="/" title="">Start</a></li>
-        <li><a href="/addjoboffer" title="">Dla pracodawców</a></li>
-        <li><a href="/categories" title="">Kategorie</a></li>
-        <li><a href="" title="">Grupa FB</a></li>
-    </ul>
+<nav th:fragment="nav" class="site-header sticky-top py-1 navbar-dark bg-light shadow-sm">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2 d-none d-md-inline-block" href="/" title="">Start</a>
+        <a class="py-2 d-none d-md-inline-block"  href="/addjoboffer" title="">Dla pracodawców</a>
+        <a class="py-2 d-none d-md-inline-block"  href="/categories" title="">Kategorie</a>
+        <a class="py-2 d-none d-md-inline-block"  href="" title="">Grupa FB</a>
+    </div>
 </nav>
-<div class="banner" th:fragment="banner">
+<div class="jumbotron text-center" th:fragment="banner">
     <canvas id="banner-background"></canvas>
     <h1>Szukasz pracy? Znajdziesz ją tu</h1>
+    <div class="searchengine text-center container" th:fragment="search">
+        <form class="mb-3" action="#" method="GET" th:action="@{/search}">
+            <label for="keyword"></label>
+            <input id="keyword" type="text">
+            <input class="btn btn-primary my-2"type="submit" value="Szukaj">
+        </form>
+    </div>
 </div>
-<div class="searchengine" th:fragment="search">
-    <form action="#" method="GET" th:action="@{/search}">
-        <label for="keyword"></label>
-        <input id="keyword" type="text">
-        <input type="submit" value="Szukaj">
-    </form>
-</div>
-<footer th:fragment="footer">
+<footer th:fragment="footer" class="container py-5">
     <h6>All rigths reserved SzukamPracy.</h6>
 </footer>
 </body>

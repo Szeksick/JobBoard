@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="main::head">
+    <title>Job board</title>
+</head>
+<body>
+<nav th:replace="main::nav"></nav>
+<div th:replace="main::banner"></div>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" th:each="category : ${categories}">
+                <div class="card mb-4 shadow-sm">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                         xmlns="http://www.w3.org/2000/svg"
+                         preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+                         aria-label="${category.name}">
+                        <title th:text="${category.name}"></title>
+                        <rect width="100%" height="100%" fill="#55595c"></rect>
+                        <text th:text="${category.name}" x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
+                    </svg>
+                    <a class="btn btn-sm btn-outline-secondary" href="#">zobacz oferty</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="main::footer"></footer>
+</body>
+</html>
