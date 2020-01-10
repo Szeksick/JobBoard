@@ -7,9 +7,10 @@
     <meta name="author" content="Konrad Gugała">
     <meta name="description" content="Szukasz pracy? Znajdziesz ją tu na ">
     <meta name="keywords" content="praca, szukam, dorywcza, sprzedaż, sprzedaz, lista, ogłoszenia, pracodawcy">
-    <link type="text/css" rel="stylesheet" th:href="@{/style.css}">
-    <script th:src="@{/bannerbackground.js}"></script>
+    <link href="../static/css/style.css" type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
     <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <script th:src="@{/bannerbackground.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
     <title>Title</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
     <div class="searchengine text-center container" th:fragment="search">
         <form class="mb-3" action="#" method="GET" th:action="@{/search}">
             <label for="keyword"></label>
-            <input id="keyword" type="text">
+            <input id="keyword" class="form-control" type="text">
             <input class="btn btn-primary my-2"type="submit" value="Szukaj">
         </form>
     </div>

@@ -8,28 +8,44 @@
 </head>
 <body>
 <nav th:replace="main::nav"></nav>
-<div class="banner">
-<canvas id="banner-background"></canvas>
-<h1>Dodaj ofertę pracy</h1>
+<div class="jumbotron text-center" th:fragment="banner">
+    <canvas id="banner-background"></canvas>
+    <h1>Dodaj ofertę pracy</h1>
 </div>
-<div class="form-wrapper">
-    <form id="addjobofferform" action="#" method="post"  th:action="@{/processjoboffer}" th:object="${jobOffer}" >
-        <label for="jobname">Nazwa stanowiska:</label>
-        <input id="jobname" type="text" th:field="*{name}">
-        <label for="category">Kategoria:</label>
-        <select id="category" th:field="*{category}">
-            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-        </select>
-        <label for="city"></label>
-        <select id="city" th:field="*{city}" >
-            <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
-        </select>
-        <label for="content">Treść ogłoszenia</label>
-        <textarea id="content" form="addjobofferform" th:field="*{content}"></textarea>
-        <label for="salary"></label>
-        <input type="text" id="salary" th:field="*{salary}">
-        <input type="submit" value="Dodaj ofertę">
-    </form>
+<div class="container">
+    <div class="col-6 mb-3">
+        <form id="addjobofferform" class="needs-validation form" action="#" method="post"
+              th:action="@{/processjoboffer}"
+              th:object="${jobOffer}">
+            <div class="mb-3 form-label-group">
+                <label for="jobname">Nazwa stanowiska</label>
+                <input class="form-control" placeholder="Nazwa stanowiska" id="jobname" type="text" th:field="*{name}">
+            </div>
+            <div class="mb-3">
+                <label for="category">Kategoria</label>
+                <select class="custom-select d-block w-100" id="category" th:field="*{category}">
+                    <option th:each="category : ${categories}" th:value="${category.id}"
+                            th:text="${category.name}"></option>
+                </select>
+            </div>
+            <div class="mb-3 form-label-group">
+                <label for="city">Miasto</label>
+                <select class="custom-select d-block w-100" id="city" th:field="*{city}">
+                    <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="content">Treść ogłoszenia</label>
+                <textarea id="content" class="form-control" form="addjobofferform" th:field="*{content}"></textarea>
+            </div>
+            <div class="mb-3 form-label-group">
+                <label for="salary">Wynagrodzenie</label>
+                <input class="form-control" placeholder="Wynagrodzenie" type="text" id="salary" th:field="*{salary}">
+            </div>
+            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Dodaj ofertę">
+        </form>
+    </div>
 </div>
+<footer th:replace="main::footer"></footer>
 </body>
 </html>
