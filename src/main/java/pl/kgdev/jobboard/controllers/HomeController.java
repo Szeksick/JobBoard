@@ -20,6 +20,7 @@ public class HomeController{
     @RequestMapping("/")
     public String home(Model model){
         model.addAttribute("jobOffers", jobOfferRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "index";
     }
 

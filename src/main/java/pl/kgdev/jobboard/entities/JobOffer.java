@@ -8,9 +8,12 @@ public class JobOffer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
     @ManyToOne
     @JoinColumn(name="category_id", nullable=false)
     private Category category;
+
+
     @ManyToOne
     @JoinColumn(name="city_id", nullable=false)
     private City city;
