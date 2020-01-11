@@ -9,11 +9,7 @@
 <nav th:replace="main::nav"></nav>
 <div th:replace="main::banner"></div>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-3 mb-1" th:each="category : ${categories}">
-            <a class="btn btn-lg btn-block btn-outline-primary" href="#" th:href="@{/offers/__${category.name}__}" th:text="${category.name}"></a>
-        </div>
-    </div>
+    <h2 th:text="${header}"></h2>
 </div>
 <div class="album py-6 bg-light">
     <div class="container">

@@ -1,6 +1,7 @@
 package pl.kgdev.jobboard.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class JobOffer {
@@ -8,6 +9,7 @@ public class JobOffer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name="category_id", nullable=false)
