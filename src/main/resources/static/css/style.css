@@ -4,3 +4,19 @@ body{
 html{
     margin: 0;
 }
+
+.job-board-banner{
+    background-image: url("../images/baner.jpg");
+    background-position: center;
+    background-position-y: -0.3em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 600px;
+}
+
+.job-board-banner > h1{
+    margin-top:3em;
+    color:white;
+    text-shadow: 2px 2px 3px #252525;
+}
