@@ -12,12 +12,12 @@ public class JobOffer {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name="category_id", nullable=false)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
 
     @ManyToOne
-    @JoinColumn(name="city_id", nullable=false)
+    @JoinColumn(name = "city_id", nullable = false)
     private City city;
     private String content;
     private String company_name;
@@ -25,7 +25,7 @@ public class JobOffer {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-    private double Salary;
+    private double salary;
 
     public JobOffer() {
     }
@@ -37,7 +37,7 @@ public class JobOffer {
         this.content = content;
         this.company_name = company_name;
         this.user = user;
-        Salary = salary;
+        this.salary = salary;
     }
 
     public Long getId() {
@@ -97,11 +97,19 @@ public class JobOffer {
     }
 
     public double getSalary() {
-        return Salary;
+        return salary;
     }
 
     public void setSalary(double salary) {
-        Salary = salary;
+        this.salary = salary;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
@@ -114,7 +122,8 @@ public class JobOffer {
                 ", content='" + content + '\'' +
                 ", company_name='" + company_name + '\'' +
                 ", user=" + user +
-                ", Salary=" + Salary +
+                ", salary=" + salary +
+                ", Date=" + date +
                 '}';
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head thfragment="head">
+<head th:fragment="head">
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
     <meta name="author" content="Konrad Gugała">
@@ -19,7 +19,10 @@
         <a class="py-2 d-none d-md-inline-block" href="/" title="">Start</a>
         <a class="py-2 d-none d-md-inline-block" href="/addjoboffer" title="">Dla pracodawców</a>
         <a class="py-2 d-none d-md-inline-block" href="/categories" title="">Kategorie</a>
-        <a class="py-2 d-none d-md-inline-block" href="" title="">Grupa FB</a>
+        <div class="justify-content-around">
+            <a class="btn btn-secondary my-2" href="/login">Zaloguj</a>
+            <a class="btn btn-secondary my-2" href="/register">Zarejestruj</a>
+        </div>
     </div>
 </nav>
 <div class="jumbotron text-center job-board-banner" th:fragment="banner">

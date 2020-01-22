@@ -1,13 +1,12 @@
 package pl.kgdev.jobboard.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +16,24 @@ public class User {
     private String username;
     private String email;
     private String phone;
+    public boolean active;
+
+    public User() {
+    }
+
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public User(String firstname, String surname, String username, String email, String phone, String password) {
         this.firstname = firstname;
@@ -26,6 +42,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.active = false;
     }
 
     public Long getId() {
@@ -50,6 +67,22 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     public String getLogin() {
@@ -80,20 +113,23 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", firstname='" + firstname + '\'' +
                 ", surname='" + surname + '\'' +
-                ", login='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", active=" + active +
                 ", password='" + password + '\'' +
+                ", roles=" + roles +
                 '}';
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }

@@ -17,6 +17,7 @@ import pl.kgdev.jobboard.repositories.JobOfferRepository;
 import pl.kgdev.jobboard.services.UserService;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class AddJobOfferController {
@@ -49,6 +50,7 @@ public class AddJobOfferController {
             }
         }
         jobOffer.setUser(userService.getUser());
+        jobOffer.setDate(new Date());
         jobOfferRepository.save(jobOffer);
         return "jobofferadded";
     }
