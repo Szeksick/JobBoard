@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head th:replace="main::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="main::nav"></nav>
+<div class="jumbotron text-center" th:fragment="banner">
+    <canvas id="banner-background"></canvas>
+    <h1>Zaloguj się</h1>
+</div>
+<div class="container">
+    <div class="col-6 mb-3">
+        <form id="loginform" class="needs-validation form" action="#" method="post"
+              th:action="@{/login}"
+              th:object="${user}">
+            <div class="mb-3 form-label-group">
+                <label for="username">Login:</label>
+                <input class="form-control" placeholder="Login" id="username" type="text" th:field="*{username}">
+            </div>
+            <div class="mb-3 form-label-group">
+                <label for="password">Hasło:</label>
+                <input class="form-control" placeholder="Hasło" type="password" id="password" th:field="*{password}">
+            </div>
+            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Zaloguj">
+        </form>
+    </div>
+</div>
+<footer th:replace="main::footer"></footer>
+</body>
+</html>

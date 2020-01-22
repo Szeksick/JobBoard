@@ -4,14 +4,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.kgdev.jobboard.entities.User;
+import pl.kgdev.jobboard.repositories.RoleRepository;
 import pl.kgdev.jobboard.repositories.UserRepository;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class UserService {
 
     private UserRepository userRepository;
+
+    private RoleRepository roleRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -26,5 +30,11 @@ public class UserService {
         String currentUserName = authentication.getName();
         User user = userRepository.findByUsername(currentUserName);
         return user;
+    }
+
+    public void saveUser(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));
+        user.setActive(true);
+        userRepository.save(user);
     }
 }
