@@ -15,23 +15,7 @@
         </div>
     </div>
 </div>
-<div class="album py-6 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6" th:each="jobOffer : ${jobOffers}">
-                <div class="card mb-6 shadow-sm">
-                    <ol>
-                        <li th:text="${jobOffer.name}"></li>
-                        <li th:text="${jobOffer.category?.name}"></li>
-                        <li th:text="${jobOffer.city?.name}"></li>
-                        <li th:text="${jobOffer.content}"></li>
-                        <li th:text="${jobOffer.salary}"></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div th:replace="jobOfferList::jobOfferList"></div>
 <footer th:replace="main::footer"></footer>
 </body>
 </html>

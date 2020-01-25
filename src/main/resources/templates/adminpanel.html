@@ -11,25 +11,26 @@
         <a class="py-2 d-none d-md-inline-block" href="/" title="">Start</a>
         <a class="py-2 d-none d-md-inline-block" href="/addjoboffer" title="">Dla pracodawców</a>
         <a class="py-2 d-none d-md-inline-block" href="/categories" title="">Kategorie</a>
-        <a class="py-2 d-none d-md-inline-block"  href="" title="">Grupa FB</a>
         <a class="py-2 d-none d-md-inline-block" href="/admin/addcategory" title="">Dodaj kategorię</a>
         <a class="py-2 d-none d-md-inline-block" href="/admin/addcity" title="">Dodaj miasto</a>
 
     </div>
 </div>
 <h2>Lista ofert pracy</h2>
+<div th:replace="jobOfferList::jobOfferList"></div>
+<h2>Lista użytkowników</h2>
 <ul>
-    <li th:each="jobOffer : ${jobOffers}">
+    <li th:each="user: ${users}">
         <ol>
-            <li th:text="${jobOffer.name}"></li>
-            <li th:text="${jobOffer.category?.name}"></li>
-            <li th:text="${jobOffer.city}"></li>
-            <li th:text="${jobOffer.content}"></li>
-            <li th:text="${jobOffer.salary}"></li>
+            <li th:text="${user.firstName}"></li>
+            <li th:text="${user.surname}"></li>
+            <li th:text="${user.username}"></li>
+            <li th:text="${user.email}"></li>
+            <li th:text="${user.phone}"></li>
+            <li th:text="${user.active}"></li>
         </ol>
     </li>
 </ul>
-
 <footer th:replace="main::footer"></footer>
 </body>
 </html>

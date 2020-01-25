@@ -1,6 +1,8 @@
 package pl.kgdev.jobboard.entities;
 
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -128,8 +130,28 @@ public class User {
                 '}';
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", active=" + active +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 
+    public void encode(String password){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(password);
+    }
+
+    public boolean checkRole(String value){
+        return roles.stream().anyMatch(role -> role.getRole().equals(value));
+    }
 }
+

@@ -11,19 +11,20 @@
 <div class="container-fluid">
     <h2 th:text="${header}"></h2>
 </div>
-<div th:fragment=""" class="album py-6 bg-light">
+<div th:fragment="jobOfferList" class="album py-6 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-6" th:each="jobOffer : ${jobOffers}">
-                <div class="card mb-6 shadow-sm">
-                    <ol>
-                        <li th:text="${jobOffer.name}"></li>
-                        <li th:text="${jobOffer.category?.name}"></li>
-                        <li th:text="${jobOffer.city?.name}"></li>
-                        <li th:text="${jobOffer.content}"></li>
-                        <li th:text="${jobOffer.salary}"></li>
-                        <li th:text="${jobOffer.date}"></li>
-                    </ol>
+            <div class="col-md-6 " th:each="jobOffer : ${jobOffers}">
+                <div class="card mb-6 shadow-sm single-job-post ">
+                    <div class="address"></div>
+                        <h6 th:text="${jobOffer.name}"></h6>
+                    <p class="h6 text-muted" th:text="${jobOffer.date}"></p>
+                        <p th:text="${jobOffer.category?.name}"></p>
+                        <p th:text="${jobOffer.city?.name}"></p>
+                        <p th:text="${jobOffer.content}"></p>
+                        <p th:text="${jobOffer.salary}"></p>
+                        <a class="col-md-2 btn btn-block btn-outline-primary" href="#" th:href="@{/jobOffer/__${jobOffer.name}__}">Więcej</a>
+                    </div>
                 </div>
             </div>
         </div>

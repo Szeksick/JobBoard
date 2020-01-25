@@ -1,14 +1,16 @@
 package pl.kgdev.jobboard.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import pl.kgdev.jobboard.entities.RoleEnum;
 import pl.kgdev.jobboard.entities.User;
 import pl.kgdev.jobboard.repositories.RoleRepository;
 import pl.kgdev.jobboard.repositories.UserRepository;
 
+
 import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class UserService {

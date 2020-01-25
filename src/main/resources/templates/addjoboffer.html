@@ -8,12 +8,12 @@
 </head>
 <body>
 <nav th:replace="main::nav"></nav>
-<div class="jumbotron text-center" th:fragment="banner">
-    <canvas id="banner-background"></canvas>
+<div class="small-banner jumbotron text-center">
     <h1>Dodaj ofertę pracy</h1>
 </div>
 <div class="container">
     <div class="col-6 mb-3">
+        <div th:text="${message}" th:if="${message}" class="alert-info"></div>
         <form id="addjobofferform" class="needs-validation form" action="#" method="post"
               th:action="@{/processjoboffer}"
               th:object="${jobOffer}">

@@ -7,17 +7,18 @@
     <title>Title</title>
 </head>
 <body>
-<nav th:replace="main::nav"></nav>
-<div class="banner">
-    <canvas id="banner-background"></canvas>
+<nav th:replace="adminpanel::nav"></nav>
+<div class="small-banner jumbotron text-center">
     <h1>Dodaj miasto</h1>
 </div>
-<div class="form-wrapper">
-    <form action="#" method="post" th:action="@{/admin/processaddcity}" th:object="${city}">
-        <label for="cityname">Nazwa miasta</label>
-        <input id="cityname" type="text" th:field="*{name}">
-        <input type="submit" value="Dodaj miasto">
-    </form>
+<div class="container">
+    <div class="form-wrapper col-md">
+        <form action="#" method="post" th:action="@{/admin/processaddcity}" th:object="${city}">
+            <label for="cityname">Nazwa miasta</label>
+            <input id="cityname" type="text" th:field="*{name}">
+            <input class="btn btn-outline-secondary btn-block col-2" type="submit" value="Dodaj miasto">
+        </form>
+    </div>
 </div>
 </body>
 </html>

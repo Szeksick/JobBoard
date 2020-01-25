@@ -5,12 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kgdev.jobboard.entities.Category;
 import pl.kgdev.jobboard.entities.City;
 import pl.kgdev.jobboard.repositories.CategoryRepository;
 import pl.kgdev.jobboard.repositories.CityRepository;
+import pl.kgdev.jobboard.repositories.JobOfferRepository;
+import pl.kgdev.jobboard.repositories.UserRepository;
 
 import javax.validation.Valid;
 
@@ -23,8 +26,17 @@ public class AdministrationPanelController {
     @Autowired
     private CityRepository cityRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private JobOfferRepository jobOfferRepository;
+
     @RequestMapping("/admin")
-    public String panelpage(){
+    public String panelpage(Model model)
+    {
+        model.addAttribute("jobOffers", jobOfferRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
         return "adminpanel";
     }
 
@@ -58,6 +70,13 @@ public class AdministrationPanelController {
         }
         categoryRepository.save(category);
         return "redirect:/admin";
+    }
+
+    @RequestMapping( value="/admin/deletecategory/{category-name}")
+    public String jobOfferListByCategory(Model model, @PathVariable("category-name") String categoryName){
+        Category category = categoryRepository.findByName(categoryName);
+        categoryRepository.delete(category);
+        return "redirect:/categories";
     }
 
 }

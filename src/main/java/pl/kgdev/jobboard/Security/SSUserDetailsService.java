@@ -1,4 +1,4 @@
-package pl.kgdev.jobboard.services;
+package pl.kgdev.jobboard.Security;
 
 
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import pl.kgdev.jobboard.entities.Role;
 import pl.kgdev.jobboard.entities.User;
 import pl.kgdev.jobboard.repositories.UserRepository;
+import pl.kgdev.jobboard.services.UserDetailsImpl;
 
 import javax.transaction.Transactional;
 import java.util.HashSet;

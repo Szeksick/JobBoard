@@ -13,6 +13,7 @@
         <div class="row">
             <div class="col-md-4" th:each="category : ${categories}">
                 <div class="card mb-4 shadow-sm">
+                    <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-outline-secondary btn-danger" href="#" th:href="@{/admin/deletecategory/__${category.name}__}">usuń kategorię</a>
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
                          xmlns="http://www.w3.org/2000/svg"
                          preserveAspectRatio="xMidYMid slice" focusable="false" role="img"

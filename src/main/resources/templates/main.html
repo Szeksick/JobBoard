@@ -16,28 +16,45 @@
 <body>
 <nav th:fragment="nav" class="site-header sticky-top py-1 navbar-dark bg-light shadow-sm">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="/" title="">Start</a>
-        <a class="py-2 d-none d-md-inline-block" href="/addjoboffer" title="">Dla pracodawców</a>
-        <a class="py-2 d-none d-md-inline-block" href="/categories" title="">Kategorie</a>
-        <div class="justify-content-around">
+        <a class="py-2 d-none d-md-inline-block nav-link" href="/" title="">Start</a>
+        <a class="py-2 d-none d-md-inline-block nav-link" href="/addjoboffer" title="">Dla pracodawców</a>
+        <a class="py-2 d-none d-md-inline-block nav-link" href="/categories" title="">Kategorie</a>
+        <div class="justify-content-around" sec:authorize="isAnonymous()">
             <a class="btn btn-secondary my-2" href="/login">Zaloguj</a>
             <a class="btn btn-secondary my-2" href="/register">Zarejestruj</a>
+        </div>
+        <div class="dropdown nav-item" sec:authorize="isAuthenticated()">
+            <button class="dropbtn btn btn-secondary my-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     class="feather feather-user">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Mój profil
+            </button>
+            <div class="dropdown-content">
+                <a href="/myprofile">Moje dane</a>
+                <a sec:authorize="hasAuthority('ADMIN')" href="/admin">Panel administracyjny</a>
+                <a href="/logout">Wyloguj</a>
+            </div>
         </div>
     </div>
 </nav>
 <div class="jumbotron text-center job-board-banner" th:fragment="banner">
     <h1>Szukasz pracy? Znajdziesz ją tu</h1>
     <div class="searchengine text-center container" th:fragment="search">
-            <label for="keyword"></label>
-            <input id="keyword" th:name="keyword" name="keyword" class="form-control" type="text">
-            <button class="btn btn-primary my-2" onclick="(function () {
+        <label for="keyword"></label>
+        <input id="keyword" th:name="keyword" name="keyword" class="form-control" type="text">
+        <button class="btn btn-primary my-2" onclick="(function () {
                 var keyword = document.getElementById('keyword').value;
                 if(keyword != null){
                     var url = location.protocol+'//'+location.host+'/search/'+keyword;
                     console.log(url);
                     window.location.href = url;
                 }
-            })()">Szukaj</button>
+            })()">Szukaj
+        </button>
     </div>
 </div>
 <footer th:fragment="footer" class="container py-5">
