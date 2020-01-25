@@ -11,7 +11,7 @@
 <div class="container-fluid">
     <h2 th:text="${header}"></h2>
 </div>
-<div class="album py-6 bg-light">
+<div th:fragment=""" class="album py-6 bg-light">
     <div class="container">
         <div class="row">
             <div class="col-md-6" th:each="jobOffer : ${jobOffers}">

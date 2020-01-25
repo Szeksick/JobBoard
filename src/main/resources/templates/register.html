@@ -25,11 +25,11 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label" for="firstName">Imię</label>
                 <div class="col-sm-10 text-left">
-                    <input class="form-control" id="firstName" placeholder="Imię" th:field="*{firstname}" type="text">
+                    <input class="form-control" id="firstName" placeholder="Imię" th:field="*{firstName}" type="text">
                     <strong>
                         <span class="error-message"
-                              th:errors="*{firstname}"
-                              th:if="${#fields.hasErrors('firstname')}">
+                              th:errors="*{firstName}"
+                              th:if="${#fields.hasErrors('firstName')}">
                             Błąd w imieniu
                         </span>
                     </strong>
@@ -90,7 +90,6 @@
                     </ul>
                 </div>
             </div>
-
         </div>
 
         <div class="form-group form-check">
