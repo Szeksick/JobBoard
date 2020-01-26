@@ -1,6 +1,9 @@
 package pl.kgdev.jobboard.entities;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -19,6 +22,10 @@ public class JobOffer {
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
+
+    @NotNull
+    @Length(max = 5000)
+    @Column(name = "content")
     private String content;
     private String company_name;
 
@@ -26,6 +33,7 @@ public class JobOffer {
     @JoinColumn(name = "user_id")
     private User user;
     private double salary;
+    private boolean isActive;
 
     public JobOffer() {
     }
@@ -112,18 +120,27 @@ public class JobOffer {
         this.date = date;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     @Override
     public String toString() {
         return "JobOffer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", date=" + date +
                 ", category=" + category +
                 ", city=" + city +
                 ", content='" + content + '\'' +
                 ", company_name='" + company_name + '\'' +
                 ", user=" + user +
                 ", salary=" + salary +
-                ", Date=" + date +
+                ", isActive=" + isActive +
                 '}';
     }
 }

@@ -9,10 +9,31 @@
 <body>
 <nav th:replace="main::nav"></nav>
 <div class="small-banner jumbotron text-center">
-    <h1 th:text=""></h1>
+    <h1>Twoje dane</h1>
 </div>
 <div class="container">
+    <div>
+        <h2>Dane użytkownika</h2>
+        <p><strong>Imię: </strong><span th:text="${user.firstName}"></span></p>
+        <p><strong>Nazwisko: </strong><span th:text="${user.surname}"></span></p>
+        <p><strong>Email: </strong><span th:text="${user.email}"></span></p>
+        <p><strong>Telefon: </strong><span th:text="${user.phone}"></span></p>
+        <p><strong>Login: </strong><span th:text="${user.username}"></span></p>
+        <p><strong>Aktywny: </strong><span th:text="${user.active}"></span></p>
+        <a href="#" class="col-1 btn btn-block btn-outline-primary">Edytuj</a>
+    </div>
+</div>
 
+<div th:if="${company}" class="container">
+    <div>
+        <h2>Dane firmy</h2>
+        <p><strong>Nazwa: </strong><span th:text="${company.name}"></span></p>
+        <p><strong>NIP: </strong><span th:text="${company.vat}"></span></p>
+        <p><strong>Adres: </strong><span th:text="${company.street}"></span></p>
+        <p><strong>Miasto: </strong><span th:text="${company.city}"></span></p>
+        <p><strong>Kod pocztowy: </strong><span th:text="${company.zip}"></span></p>
+        <p><strong>Strona www: </strong><span th:text="${company.website}"></span></p>
+        <a href="#" class="col-1 btn btn-block btn-outline-primary">Edytuj</a>
     </div>
 </div>
 <footer th:replace="main::footer"></footer>

@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.kgdev.jobboard.entities.Category;
 import pl.kgdev.jobboard.entities.City;
+import pl.kgdev.jobboard.entities.User;
 import pl.kgdev.jobboard.repositories.CategoryRepository;
 import pl.kgdev.jobboard.repositories.CityRepository;
 import pl.kgdev.jobboard.repositories.JobOfferRepository;
 import pl.kgdev.jobboard.repositories.UserRepository;
+import pl.kgdev.jobboard.services.UserService;
 
 import javax.validation.Valid;
 
@@ -32,6 +34,9 @@ public class AdministrationPanelController {
     @Autowired
     private JobOfferRepository jobOfferRepository;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/admin")
     public String panelpage(Model model)
     {
@@ -48,12 +53,11 @@ public class AdministrationPanelController {
     @PostMapping("/admin/processaddcity")
     public String processaddcity(@Valid City city, BindingResult result, Model model){
         if(result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.out.println(e);
-            }
+            return "addcity";
         }
+        model.addAttribute("message", "Miasto "+city.getName()+" zostało dodane");
         cityRepository.save(city);
-        return "redirect:/admin";
+        return "addcity";
     }
 
     @RequestMapping("/admin/addcategory")
@@ -64,12 +68,11 @@ public class AdministrationPanelController {
     @PostMapping("/admin/processaddcategory")
     public String processaddcity(@Valid Category category, BindingResult result, Model model){
         if(result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.out.println(e);
-            }
+          return "addcategory";
         }
+        model.addAttribute("message", "Kategoria "+category.getName()+" została dodana");
         categoryRepository.save(category);
-        return "redirect:/admin";
+        return "addcategory";
     }
 
     @RequestMapping( value="/admin/deletecategory/{category-name}")
@@ -77,6 +80,13 @@ public class AdministrationPanelController {
         Category category = categoryRepository.findByName(categoryName);
         categoryRepository.delete(category);
         return "redirect:/categories";
+    }
+
+    @RequestMapping( value="/admin/deletecategory/{username}")
+    public String deactivateUser(Model model, @PathVariable("username") String username){
+        User user = userRepository.findByUsername(username);
+        user.setActive(false);
+        return "adminpanel";
     }
 
 }

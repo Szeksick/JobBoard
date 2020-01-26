@@ -16,16 +16,28 @@ html{
 }
 
 .small-banner{
-    background-image: url("../images/small-banner.jpeg");
+    background-image: url("../images/small-banner.png");
     background-position: center;
     background-position-y: -0.3em;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    height: 450px;
+    height: 200px;
 }
 
-.job-board-banner > h1,.small-banner > h1{
+.job-offer-content{
+    max-lines: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.small-banner > h1{
+    color:white;
+    text-shadow: 2px 2px 3px #252525;
+}
+
+.job-board-banner > h1{
     margin-top:3em;
     color:white;
     text-shadow: 2px 2px 3px #252525;

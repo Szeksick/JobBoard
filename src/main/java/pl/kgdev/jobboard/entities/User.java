@@ -4,6 +4,7 @@ package pl.kgdev.jobboard.entities;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Entity
@@ -15,16 +16,19 @@ public class User {
     private Long id;
     private String firstname;
     private String surname;
+    @NotNull
     private String username;
     private String email;
     private String phone;
+    @NotNull
     public boolean active;
 
     public User() {
     }
 
     private String password;
-
+    @OneToOne
+    private Company company;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
@@ -55,12 +59,12 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getSurname() {
@@ -79,22 +83,6 @@ public class User {
         this.username = username;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
-
-    public String getLogin() {
-        return username;
-    }
-
-    public void setLogin(String login) {
-        this.username = login;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -111,23 +99,36 @@ public class User {
         this.phone = phone;
     }
 
+    public boolean isCompanyProfile() {
+        return companyProfile;
+    }
+
+    public void setCompanyProfile(boolean companyProfile) {
+        this.companyProfile = companyProfile;
+    }
+
     public String getPassword() {
         return password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", surname='" + surname + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", active=" + active +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -140,17 +141,20 @@ public class User {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", active=" + active +
+                ", companyProfile=" + companyProfile +
                 ", password='" + password + '\'' +
+                ", company=" + company +
                 ", roles=" + roles +
                 '}';
     }
 
-    public void encode(String password){
+
+    public void encode(String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         this.password = passwordEncoder.encode(password);
     }
 
-    public boolean checkRole(String value){
+    public boolean checkRole(String value) {
         return roles.stream().anyMatch(role -> role.getRole().equals(value));
     }
 }

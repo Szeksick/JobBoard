@@ -2,6 +2,7 @@ package pl.kgdev.jobboard;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import pl.kgdev.jobboard.entities.City;
 import pl.kgdev.jobboard.entities.Role;
@@ -28,15 +29,15 @@ public class InitialDataLoader implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
-    private boolean initNeeded = false;
+    private boolean initrequired = true;
 
     @Override
     public void run(String... args) throws Exception {
-        if(initNeeded) {
+        if(initrequired) {
             initializeCities();
             initializeRoles();
 
-            User admin = new User("Administrator", " ", "Admin", "admin@admin.pl", "660770890", " ");
+            User admin = new User("Administrator", " ", "Admin", "admin@admin.pl", "660770890", false, null);
             admin.encode("admin");
             userService.saveAdmin(admin);
         }

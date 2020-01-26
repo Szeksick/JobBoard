@@ -13,24 +13,72 @@
         <a class="py-2 d-none d-md-inline-block" href="/categories" title="">Kategorie</a>
         <a class="py-2 d-none d-md-inline-block" href="/admin/addcategory" title="">Dodaj kategorię</a>
         <a class="py-2 d-none d-md-inline-block" href="/admin/addcity" title="">Dodaj miasto</a>
-
+        <div class="dropdown nav-item" sec:authorize="isAuthenticated()">
+            <button class="dropbtn btn btn-secondary my-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     class="feather feather-user">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Mój profil
+            </button>
+            <div class="dropdown-content">
+                <a href="/myprofile">Moje dane</a>
+                <a sec:authorize="hasAuthority('ADMIN')" href="/admin">Panel administracyjny</a>
+                <a href="/logout">Wyloguj</a>
+            </div>
+        </div>
     </div>
 </div>
-<h2>Lista ofert pracy</h2>
-<div th:replace="jobOfferList::jobOfferList"></div>
-<h2>Lista użytkowników</h2>
-<ul>
-    <li th:each="user: ${users}">
-        <ol>
-            <li th:text="${user.firstName}"></li>
-            <li th:text="${user.surname}"></li>
-            <li th:text="${user.username}"></li>
-            <li th:text="${user.email}"></li>
-            <li th:text="${user.phone}"></li>
-            <li th:text="${user.active}"></li>
-        </ol>
-    </li>
-</ul>
+<h2 align="center">Ogłoszenia</h2>
+<table class="table table-striped" style="width:100%">
+    <thead class="thead-light">
+    <tr>
+        <th>Stanowisko</th>
+        <th>Data dodania</th>
+        <th>kategoria</th>
+        <th>Miasto</th>
+        <th>Wynagrodzenie</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tr th:each="jobOffer : ${jobOffers}">
+        <td th:text="${jobOffer.name}"></td>
+        <td class="h6 text-muted" th:text="${jobOffer.date}"></td>
+        <td th:text="${jobOffer.category?.name}"></td>
+        <td th:text="${jobOffer.city?.name}"></td>
+        <td th:text="${jobOffer.salary}"></td>
+        <td><a class="btn btn-block btn-outline-primary" href="#" th:href="@{/admin/deletejoboffer/__${jobOffer.name}__}">Usuń</a>
+            <a class="btn btn-block btn-outline-primary" href="#" th:href="@{/jobOffer/__${jobOffer.name}__}">Szczegóły</a>
+        </td>
+    </tr>
+</table>
+
+<h2 align="center">Użytkownicy</h2>
+<table class="table table-striped" style="width:100%">
+    <thead class="thead-light">
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Email</th>
+        <th>Telefon</th>
+        <th>Login</th>
+        <th>Aktywny</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.phone}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.active}"></td>
+        <td><a class=" btn btn-block btn-outline-primary" href="#" th:href="@{/admin/deactivate/__${user.username}__}">Blokuj</a>
+        </td>
+    </tr>
+</table>
 <footer th:replace="main::footer"></footer>
 </body>
 </html>

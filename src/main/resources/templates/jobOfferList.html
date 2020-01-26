@@ -21,7 +21,7 @@
                     <p class="h6 text-muted" th:text="${jobOffer.date}"></p>
                         <p th:text="${jobOffer.category?.name}"></p>
                         <p th:text="${jobOffer.city?.name}"></p>
-                        <p th:text="${jobOffer.content}"></p>
+                        <p class="job-offer-content" th:text="${jobOffer.content}"></p>
                         <p th:text="${jobOffer.salary}"></p>
                         <a class="col-md-2 btn btn-block btn-outline-primary" href="#" th:href="@{/jobOffer/__${jobOffer.name}__}">Więcej</a>
                     </div>

@@ -12,6 +12,7 @@
     <h1>Dodaj miasto</h1>
 </div>
 <div class="container">
+    <div th:text="${message}" th:if="${message}" class="alert-info"></div>
     <div class="form-wrapper col-md">
         <form action="#" method="post" th:action="@{/admin/processaddcity}" th:object="${city}">
             <label for="cityname">Nazwa miasta</label>

@@ -25,8 +25,8 @@
 
             <div class="form-group form-check">
                 <div>
-                    <input class="form-check-input" id="isCompany" type="checkbox" th:field="*{companyProfile}"
-                           onclick="checkBox()"/>
+                    <input class="form-check-input" id="isCompany" placeholder="true" type="checkbox"
+                           th:field="*{companyProfile}" onclick="checkBox()"/>
                     <label class="form-check-label" for="enabled">
                         Chęcę założyć profil firmowy.
                     </label>
@@ -118,27 +118,96 @@
             </div>
         </div>
 
-        <div class="form-group form-check">
-            <div>
-                <input class="form-check-input" id="enabled" type="checkbox" th:field="*{active}"/>
-                <label class="form-check-label" for="enabled">
-                    Akceptuję <a href="/termsandconditions">regulamin</a> serwisu.
-                </label>
+        <h2>Dane firmy</h2>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="username">Nazwa firmy</label>
+            <div class="col-sm-10 text-left">
+                <input class="form-control" id="company.name" placeholder="Nazwa firmy" th:field="*{company.name}"
+                       type="text">
+                <strong>
+                        <span class="error-message"
+                              th:errors="*{company.name}"
+                              th:if="${#fields.hasErrors('company.name')}">Błąd w nazwie firmy
+                        </span>
+                </strong>
             </div>
-            <strong>
-                <span class="error-message" th:errors="*{active}" th:if="${#fields.hasErrors('active')}">Zaakcetuj regulamin</span>
-            </strong>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="company.vat">NIP:</label>
+            <div class="col-sm-10 text-left">
+                <input class="form-control" id="company.vat" placeholder="666-6666-66-66" th:field="*{company.vat}"
+                       type="text">
+                <strong>
+                        <span class="error-message"
+                              th:errors="*{company.vat}"
+                              th:if="${#fields.hasErrors('company.vat')}">Błąd w numerze NIP
+                        </span>
+                </strong>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 text-left">
+                <input class="form-control" id="company.street" placeholder="ul. Polna 8" th:field="*{company.street}"
+                       type="text">
+                <strong>
+                        <span class="error-message"
+                              th:errors="*{company.street}"
+                              th:if="${#fields.hasErrors('company.street')}">Błąd w adresie
+                        </span>
+                </strong>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 text-left">
+                <label for="company.city">Miasto</label>
+                <select class="custom-select d-block w-100" id="company.city" th:field="*{company.city}">
+                    <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+                </select>
+                <span class="error-message"
+                      th:errors="*{company.city}"
+                      th:if="${#fields.hasErrors('company.street')}">Niepoprawne miasto
+                        </span>
+                </strong>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 text-left">
+                <input class="form-control" id="company.websiteUrl" placeholder="www.website.pl"
+                       th:field="*{company.websiteUrl}" type="text">
+                <strong>
+                        <span class="error-message"
+                              th:errors="*{company.websiteUrl}"
+                              th:if="${#fields.hasErrors('company.websiteUrl')}">Błąd w adresie strony
+                        </span>
+                </strong>
+            </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">Zarejestruj</button>
+</div>
 
-    </form>
 
-    <div class="row text-left">
-        <div class="col-md-12">
-            Masz już konto? <a href="/" th:href="@{/login}">Zaloguj się</a>
-        </div>
+<div class="form-group form-check">
+    <div>
+        <input class="form-check-input" id="enabled" type="checkbox" th:field="*{active}"/>
+        <label class="form-check-label" for="enabled">
+            Akceptuję <a href="#">regulamin</a> serwisu.
+        </label>
     </div>
+    <strong>
+        <span class="error-message" th:errors="*{active}"
+              th:if="${#fields.hasErrors('active')}">Zaakcetuj regulamin</span>
+    </strong>
+</div>
+
+<button class="btn btn-primary" type="submit">Zarejestruj</button>
+
+</form>
+
+<div class="row text-left">
+    <div class="col-md-12">
+        Masz już konto? <a href="/" th:href="@{/login}">Zaloguj się</a>
+    </div>
+</div>
 
 </div>
 
@@ -148,7 +217,7 @@
         var checkBox = document.getElementById("isCompany");
         var text = document.getElementById("company-data");
         if (checkBox.checked == true) {
-            var url = location.protocol + '//' + location.host +'/register/company';
+            var url = location.protocol + '//' + location.host + '/register/company';
             console.log(url);
             window.location.href = url;
         } else {

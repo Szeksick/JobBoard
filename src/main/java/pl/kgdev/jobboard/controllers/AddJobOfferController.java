@@ -40,31 +40,34 @@ public class AddJobOfferController {
 
 
     @RequestMapping("/addjoboffer")
-    public String addJoboffer(Model model){
+    public String addJoboffer(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("cities", cityRepository.findAll());
         model.addAttribute("jobOffer", new JobOffer());
-        if(userService.getUser() != null){
+        if (userService.getUser() != null) {
             model.addAttribute("user", userService.getUser());
-                return "addjoboffer";
+            return "addjoboffer";
         }
         return "redirect:/login";
     }
 
     @PostMapping("/processjoboffer")
-    public String processJobOffer(@Valid JobOffer jobOffer, BindingResult result, Model model){
-        if(result.hasErrors()) {
-            for (ObjectError e : result.getAllErrors()) {
-                System.out.println(e);
-            }
+    public String processJobOffer(@Valid JobOffer jobOffer, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "addjoboffer";
         }
         jobOffer.setUser(userService.getUser());
         jobOffer.setDate(new Date());
+        if(userService.getUser().getCompany() != null) {
+            jobOffer.setCompany_name(userService.getUser().getCompany().getName());
+        } else {
+            jobOffer.setCompany_name("Nieznana firma");
+        }
         jobOfferRepository.save(jobOffer);
         model.addAttribute("message", "Ogłoszenie zostało dodane");
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("cities", cityRepository.findAll());
         model.addAttribute("jobOffer", new JobOffer());
-        return "redirect:/addjoboffer";
+        return "addjoboffer";
     }
 }
