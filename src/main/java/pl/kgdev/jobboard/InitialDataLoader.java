@@ -29,7 +29,7 @@ public class InitialDataLoader implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
-    private boolean initrequired = true;
+    private boolean initrequired = false;
 
     @Override
     public void run(String... args) throws Exception {

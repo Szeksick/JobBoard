@@ -82,7 +82,7 @@ public class AdministrationPanelController {
         return "redirect:/categories";
     }
 
-    @RequestMapping( value="/admin/deletecategory/{username}")
+    @RequestMapping( value="/admin/deleteuser/{username}")
     public String deactivateUser(Model model, @PathVariable("username") String username){
         User user = userRepository.findByUsername(username);
         user.setActive(false);

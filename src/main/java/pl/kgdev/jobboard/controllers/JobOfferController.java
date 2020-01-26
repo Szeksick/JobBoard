@@ -24,9 +24,8 @@ public class JobOfferController {
 
     @RequestMapping("/admin/deletejoboffer/{jobOffer-name}")
     public String deleteJobOffer(HttpServletRequest request,Model model, @PathVariable("jobOffer-name") String jobOfferName){
-        String referer = request.getHeader("Referer");
         JobOffer jobOffer = jobOfferRepository.findByName(jobOfferName);
         jobOfferRepository.delete(jobOffer);
-        return "redirect:"+referer;
+        return "redirect:/";
     }
 }
