@@ -14,7 +14,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstname;
+    @NotNull
+    private String firstName;
+    @NotNull
     private String surname;
     @NotNull
     private String username;
@@ -22,16 +24,19 @@ public class User {
     private String phone;
     @NotNull
     public boolean active;
-
-    public User() {
-    }
-
+    @NotNull
+    private boolean companyProfile;
+    @NotNull
     private String password;
     @OneToOne
     private Company company;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+    public User() {
+    }
 
     public boolean isActive() {
         return active;
@@ -41,14 +46,19 @@ public class User {
         this.active = active;
     }
 
-    public User(String firstname, String surname, String username, String email, String phone, String password) {
-        this.firstname = firstname;
+    public User(@NotNull String firstName, @NotNull String surname, @NotNull String username, String email, String phone, @NotNull boolean companyProfile, Company company) {
+        this.firstName = firstName;
         this.surname = surname;
         this.username = username;
         this.email = email;
         this.phone = phone;
-        this.password = password;
         this.active = false;
+        this.companyProfile = companyProfile;
+        if (!companyProfile) {
+            this.company = null;
+        } else {
+            this.company = company;
+        }
     }
 
     public Long getId() {
