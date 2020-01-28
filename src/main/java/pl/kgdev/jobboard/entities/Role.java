@@ -1,6 +1,5 @@
 package pl.kgdev.jobboard.entities;
 
-
 import javax.persistence.*;
 import java.util.Collection;
 

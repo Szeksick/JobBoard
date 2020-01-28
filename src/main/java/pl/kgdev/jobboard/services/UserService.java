@@ -15,28 +15,45 @@ import java.util.Arrays;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-    private RoleRepository roleRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
-    public UserService(UserRepository userRepository) {
+    @Autowired
+    public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
 
-    public List<User> findAll(){
-        return  userRepository.findAll();
+
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
+
+    public void saveUser(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole(RoleEnum.USER.name())));
+        user.setActive(true);
+        userRepository.save(user);
+    }
+
+    public void saveCompany(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole(RoleEnum.COMPANY.name())));
+        user.setActive(true);
+        userRepository.save(user);
+    }
+
+    public void saveAdmin(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole(RoleEnum.ADMIN.name())));
+        user.setActive(true);
+        userRepository.save(user);
+    }
+
 
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
         User user = userRepository.findByUsername(currentUserName);
         return user;
-    }
-
-    public void saveUser(User user){
-        user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));
-        user.setActive(true);
-        userRepository.save(user);
     }
 }
